@@ -81,6 +81,55 @@ class DecideTest {
     }
 
     @org.junit.jupiter.api.Test
-    void lic_14() {
+    void lic_14_true() {
+        //Assert true
+        Decide.parameters = new Parameters_T();
+        Point[] points = {
+                new Point(0, 0),
+                new Point(1, 0),
+                new Point(5, 5),
+                new Point(6, 8),
+                new Point(2, 1),
+                new Point(4, 4),
+                new Point(-2, 3)
+        };
+        Decide.parameters.EPTS = 1;
+        Decide.parameters.FPTS = 1;
+
+        Decide.parameters.AREA1 = 0.2;
+        Decide.parameters.AREA2 = 4;
+
+        Decide.points = points;
+        Decide.NUMPOINTS = 7;
+
+        boolean decision = Decide.lic_14();
+
+        assertTrue(decision);
+    }
+    @org.junit.jupiter.api.Test
+    void lic_14_false() {
+        Decide.parameters = new Parameters_T();
+        Point[] points = {
+                new Point(0, 0),
+                new Point(1, 0),
+                new Point(5, 5),
+                new Point(6, 8),
+                new Point(2, 1),
+                new Point(4, 4),
+                new Point(-2, 3)
+        };
+        //Gives a triangle with area 17
+        Decide.parameters.EPTS = 2;
+        Decide.parameters.FPTS = 2;
+
+        Decide.parameters.AREA1 = 18;
+        Decide.parameters.AREA2 = 14;
+
+        Decide.points = points;
+        Decide.NUMPOINTS = 7;
+
+        boolean decision = Decide.lic_14();
+
+        assertFalse(decision);
     }
 }
