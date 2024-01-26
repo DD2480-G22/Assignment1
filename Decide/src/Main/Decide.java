@@ -1,5 +1,7 @@
 package Main;
 
+import java.lang.Math;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Decide {
@@ -20,7 +22,7 @@ public class Decide {
     public static Parameters_T parameters;
 
     // Logical Connector Matrix.
-    public static boolean[][] LCM;
+    public static operators[][] LCM;
 
     // Preliminary Unlocking Vector
     public static boolean[] PUV;
@@ -34,15 +36,20 @@ public class Decide {
     //Final Unlocking Vector.
     public static boolean[] FUV;
 
-
-
-
     public static boolean decide(){
         return false;
     }
 
     public static boolean lic_0(){
-        return false;
+        double max_distance = -1;
+        double distance = -1;
+        for (int i = 0; i < (points.length-1); i++){
+            distance = Math.sqrt(Math.pow((points[i+1].x-points[i].x),2)+Math.pow((points[i+1].y-points[i].y),2));
+            if(distance > max_distance){
+                max_distance = distance;
+            }
+        }
+        return max_distance > parameters.LENGTH1;
     }
     public static boolean lic_1(){
         return false;
