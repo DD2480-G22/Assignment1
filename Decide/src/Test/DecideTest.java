@@ -49,7 +49,34 @@ class DecideTest {
     }
 
     @org.junit.jupiter.api.Test
-    void lic_6() {
+    void lic_6_true() {
+        Decide.parameters = new Parameters_T();
+        Point[] points = {
+                new Point(0, 0),
+                new Point(4, 0),
+                new Point(4, 4),
+                new Point(0, 2)
+        };
+        Decide.points = points;
+        Decide.NUMPOINTS = points.length;
+        Decide.parameters.NPTS = 3;
+        Decide.parameters.DIST = 2.9;
+        assertTrue(Decide.lic_6());
+    }
+
+    @org.junit.jupiter.api.Test
+    void lic_6_false() {
+        Decide.parameters = new Parameters_T();
+        Point[] points = {
+                new Point(0, 0),
+                new Point(4, 0),
+                new Point(4, 4)
+        };
+        Decide.points = points;
+        Decide.NUMPOINTS = points.length;
+        Decide.parameters.NPTS = 3;
+        Decide.parameters.DIST = 2.9;
+        assertFalse(Decide.lic_6());
     }
 
     @org.junit.jupiter.api.Test
