@@ -67,6 +67,22 @@ public class Decide {
         return false;
     }
     public static boolean lic_6(){
+        if(NUMPOINTS<3){
+            return false;
+        }
+        double distance = -1;
+        for(int i = 0; i < NUMPOINTS-parameters.NPTS; i++){
+            Point p1 = points[i];
+            Point p2 = points[i+parameters.NPTS];
+            for(int j = i; j < parameters.NPTS; i++){
+                Point p0 = points[j];
+                distance = Math.abs((p2.x-p1.x)*(p1.y-p0.y)-(p1.x-p0.x)*(p2.y-p1.y));
+                distance = distance/Math.sqrt(Math.pow((p2.x-p1.x),2)+Math.pow((p2.y-p1.y),2));
+                if(distance > parameters.DIST){
+                    return true;
+                }
+            }
+        }
         return false;
     }
     public static boolean lic_7(){
