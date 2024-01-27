@@ -1,6 +1,7 @@
 package Main;
 
 import java.lang.Math;
+import java.sql.SQLOutput;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -87,6 +88,18 @@ public class Decide {
         return false;
     }
     public static boolean lic_7(){
+        if(NUMPOINTS < 3){
+            return false;
+        }
+        double distance = -1;
+        for(int i = 0; i < NUMPOINTS-parameters.KPTS-1; i++){
+            Point p1 = points[i];
+            Point p2 = points[i+parameters.KPTS+1];
+            distance = Math.sqrt(Math.pow((p2.x-p1.x),2)+Math.pow((p2.y-p1.y),2));
+            if(distance > parameters.LENGTH1){
+                return true;
+            }
+        }
         return false;
     }
     public static boolean lic_8(){
