@@ -2,17 +2,19 @@ import Main.Decide;
 import Main.Parameters_T;
 import Main.Point;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DecideTest {
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     void decide() {
+        fail("Not implemented");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_0() {
         Decide.parameters = new Parameters_T();
         Point p1 = new Point(1,1);
@@ -27,28 +29,57 @@ class DecideTest {
         assertTrue(decision);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_1() {
-
+        fail("Not implemented");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_2() {
+        fail("Not implemented");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_3() {
+        fail("Not implemented");
     }
 
-    @org.junit.jupiter.api.Test
-    void lic_4() {
+    @Test
+    void lic_4_true() {
+        Decide.parameters = new Parameters_T();
+        Decide.points = new Point[]{
+                new Point(1, 1), // Quadrant 1 (could be any point)
+                new Point(0, 0), // Quadrant 1
+                new Point(-1, 0), // Quadrant 2
+                new Point(0, -1), // Quadrant 3
+                new Point(1, -1) // Quadrant 4
+        };
+        Decide.parameters.QPTS = 4;
+        Decide.parameters.QUADS = 3;
+        assertTrue(Decide.lic_4()); // There exists at least one set of QPTS consecutive data points that lie in more than QUADS quadrants.
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
+    void lic_4_false() {
+        Decide.parameters = new Parameters_T();
+        Decide.points = new Point[]{
+                new Point(1, 1), // Quadrant 1
+                new Point(0, 0), // Quadrant 1
+                new Point(0.5, 2.6), // Quadrant 1
+                new Point(-1, -1), // Quadrant 3
+                new Point(0.5, -0.5) // Quadrant 4
+        };
+        Decide.parameters.QPTS = 4;
+        Decide.parameters.QUADS = 3;
+        assertFalse(Decide.lic_4());
+    }
+
+    @Test
     void lic_5() {
+        fail("Not implemented");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_6_true() {
         Decide.parameters = new Parameters_T();
         Point[] points = {
@@ -64,7 +95,7 @@ class DecideTest {
         assertTrue(Decide.lic_6());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_6_false() {
         Decide.parameters = new Parameters_T();
         Point[] points = {
@@ -79,7 +110,7 @@ class DecideTest {
         assertFalse(Decide.lic_6());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_7_true() {
         Decide.parameters = new Parameters_T();
         Point[] points = {
@@ -99,7 +130,7 @@ class DecideTest {
         assertTrue(Decide.lic_7());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_7_false() {
         Decide.parameters = new Parameters_T();
         Point[] points = {
@@ -119,31 +150,37 @@ class DecideTest {
         assertFalse(Decide.lic_7());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_8() {
+        fail("Not implemented");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_9() {
+        fail("Not implemented");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_10() {
+        fail("Not implemented");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_11() {
+        fail("Not implemented");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_12() {
+        fail("Not implemented");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_13() {
+        fail("Not implemented");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_14_true() {
         //Assert true
         Decide.parameters = new Parameters_T();
@@ -169,7 +206,7 @@ class DecideTest {
 
         assertTrue(decision);
     }
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_14_false() {
         Decide.parameters = new Parameters_T();
         Point[] points = {
