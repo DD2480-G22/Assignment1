@@ -2,6 +2,7 @@ package Main;
 
 import java.lang.Math;
 import java.sql.SQLOutput;
+import java.util.LinkedList;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -62,7 +63,56 @@ public class Decide {
         return false;
     }
     public static boolean lic_4(){
+        LinkedList<Integer> quadrants = new LinkedList<>(); // List of QPTS consecutive quadrants / data points
+
+        for (Point point : points) {
+            int quadrant = getQuadrant(point);
+
+            quadrants.addLast(quadrant);
+
+            if (quadrants.size() == parameters.QPTS) {
+                int[] quadUsed = {0, 0, 0, 0};
+                int numUsedQuadrants = 0;
+
+                for (int i = 0; i < parameters.QPTS; i++) {
+                    quadUsed[quadrants.get(i)-1] = 1; // Set used quadrants
+                }
+
+                for (int j : quadUsed) {
+                    numUsedQuadrants += j; // j is 0 if quadrant is not used, 1 if used
+                }
+
+                if (numUsedQuadrants > parameters.QUADS) {
+                    return true;
+                }
+                else {
+                    quadrants.removeFirst();
+                }
+            }
+
+        }
+
         return false;
+    }
+
+    // Used in lic_4()
+    private static int getQuadrant(Point p){
+        if (p.y >= 0) {
+            if (p.x >= 0) {
+                return 1; // Quadrant 1
+            }
+            else {
+                return 2; // Quadrant 2
+            }
+        }
+        else {
+            if (p.x <= 0) {
+                return 3; // Quadrant 3
+            }
+            else {
+                return 4; // Quadrant 4
+            }
+        }
     }
     public static boolean lic_5(){
         return false;
