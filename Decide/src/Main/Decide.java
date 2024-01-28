@@ -165,7 +165,25 @@ public class Decide {
         return false;
     }
     public static boolean lic_12(){
-        return false;
+        //Same as LIC7, except an additional requirement?
+        if(NUMPOINTS < 3){
+            return false;
+        }
+        double distance = -1;
+        boolean dist1 = false;
+        boolean dist2 = false;
+        for(int i = 0; i < NUMPOINTS-parameters.KPTS-1; i++){
+            Point p1 = points[i];
+            Point p2 = points[i+parameters.KPTS+1];
+            distance = Math.sqrt(Math.pow((p2.x-p1.x),2)+Math.pow((p2.y-p1.y),2));
+            if(distance > parameters.LENGTH1){
+                dist1 = true;
+            }
+            if(distance < parameters.LENGTH2){
+                dist2 = true;
+            }
+        }
+        return dist1 & dist2;
     }
     public static boolean lic_13(){
         return false;
