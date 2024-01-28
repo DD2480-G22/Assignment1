@@ -42,6 +42,27 @@ public class Decide {
         return false;
     }
 
+    public static boolean[] setCMV(){
+        CMV = new boolean[14];
+        CMV[0] = lic_0();
+        CMV[1] = lic_1();
+        CMV[2] = lic_2();
+        CMV[3] = lic_3();
+        CMV[4] = lic_4();
+        CMV[5] = lic_5();
+        CMV[6] = lic_6();
+        CMV[7] = lic_7();
+        CMV[8] = lic_8();
+        CMV[9] = lic_9();
+        CMV[10] = lic_10();
+        CMV[11] = lic_11();
+        CMV[12] = lic_12();
+        CMV[13] = lic_13();
+        CMV[14] = lic_14();
+
+        return CMV;
+    }
+
     public static boolean lic_0(){
         double max_distance = -1;
         double distance = -1;
