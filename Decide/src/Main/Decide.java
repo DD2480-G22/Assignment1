@@ -159,6 +159,26 @@ public class Decide {
         return false;
     }
     public static boolean lic_10(){
+        if(NUMPOINTS < 5)
+            return false;
+
+        boolean area1check = false;
+
+        for(int i = 0; i+2 < points.length-parameters.EPTS-parameters.FPTS; i++){
+
+            // 3 vertices from points
+            Point p1 = points[i];
+            Point p2 = points[i+parameters.EPTS+1];
+            Point p3 = points[i+parameters.EPTS+parameters.FPTS+2];
+
+            // Area of triangle given 3 vertices
+            double area = 0.5*Math.abs(p1.x*(p2.y-p3.y)+p2.x*(p3.y-p1.y)+p3.x*(p1.y-p2.y));
+
+            if(area > parameters.AREA1){
+                return true;
+            }
+        }
+
         return false;
     }
     public static boolean lic_11(){
