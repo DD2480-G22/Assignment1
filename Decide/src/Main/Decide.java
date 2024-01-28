@@ -42,6 +42,8 @@ public class Decide {
         return false;
     }
 
+
+    // Calculates the CMV with the use of LIC-requirements
     public static boolean[] setCMV(){
         CMV = new boolean[14];
         CMV[0] = lic_0();
