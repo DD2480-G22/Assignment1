@@ -121,7 +121,7 @@ public class Decide {
     }
 
     // Used in lic_4()
-    private static int getQuadrant(Point p){
+    public static int getQuadrant(Point p){
         if (p.y >= 0) {
             if (p.x >= 0) {
                 return 1; // Quadrant 1
@@ -178,12 +178,40 @@ public class Decide {
         return false;
     }
     public static boolean lic_8(){
+        if (NUMPOINTS < 5){
+            return false;
+        }
+
+        for (int i = 0; i < points.length - parameters.APTS - parameters.BPTS - 2; i++) {
+            Point point1 = points[i];
+            Point point2 = points[i + 1 + parameters.APTS];
+            Point point3 = points[i + 2 + parameters.APTS + parameters.BPTS];
+
+            // side lengths
+            double a = distance(point1, point2);
+            double b = distance(point2, point3);
+            double c = distance(point3, point1);
+
+            // if points are collinear
+            if ((point2.y - point1.y) / (point2.x - point1.x) == ((point3.y - point2.y) / (point3.x - point2.x))){
+                return a > parameters.RADIUS1 * 2 || b > parameters.RADIUS1 * 2 || c > parameters.RADIUS1 * 2;
+            }
+
+            double s = (a + b + c) / 2; // semiperimeter
+            double circumradius = (a * b * c) / (4.0 * Math.sqrt(s * (a+b-s) * (a+c-s) * (b+c-s)));
+
+            if (circumradius > parameters.RADIUS1){
+                return true;
+            }
+
+        }
         return false;
     }
 
     public static double distance(Point a, Point b){
         return Math.sqrt((b.x-a.x) * (b.x-a.x) + (b.y-a.y) * (b.y-a.y));
     }
+
     public static boolean lic_9(){
         if (NUMPOINTS < 5){
             return false;
@@ -213,6 +241,7 @@ public class Decide {
         }
         return false;
     }
+  
     public static boolean lic_10(){
         if(NUMPOINTS < 5)
             return false;
