@@ -157,7 +157,7 @@ public class Decide {
             return false;
         }
 
-        for (int i = 0; i < points.length - parameters.APTS - parameters.BPTS; i++) {
+        for (int i = 0; i < points.length - parameters.APTS - parameters.BPTS - 2; i++) {
             Point point1 = points[i];
             Point point2 = points[i + 1 + parameters.APTS];
             Point point3 = points[i + 2 + parameters.APTS + parameters.BPTS];
