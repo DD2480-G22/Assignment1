@@ -17,6 +17,8 @@ public class Decide {
     //  The number of planar data points.
     public static int NUMPOINTS;
 
+    public static final double PI = 3.1415926535;
+
     //Array containing the coordinates of data points
     public static Point[] points;
 
@@ -210,10 +212,36 @@ public class Decide {
         return Math.sqrt((b.x-a.x) * (b.x-a.x) + (b.y-a.y) * (b.y-a.y));
     }
 
-
     public static boolean lic_9(){
+        if (NUMPOINTS < 5){
+            return false;
+        }
+
+        for (int i = 0; i < points.length - parameters.CPTS - parameters.DPTS - 2; i++) {
+            Point point1 = points[i];
+            Point point2 = points[i + 1 + parameters.CPTS]; // vertex of the angle
+            Point point3 = points[i + 2 + parameters.CPTS + parameters.DPTS];
+
+            double a = distance(point1, point2);
+            double b = distance(point2, point3);
+            double c = distance(point3, point1);
+
+            // If either the first point or the last point (or both) coincide with the vertex,
+            // the angle is undefined and the LIC is not satisfied by those three points.
+            if(a == 0 || b == 0){
+                return false;
+            }
+
+            // Calculate angle at point2
+            double angle = Math.toDegrees(Math.acos((a*a + b*b - c*c) / (2*a*b)));
+
+            if (angle < (PI-parameters.EPSILON) || angle > PI+parameters.EPSILON){
+                return true;
+            }
+        }
         return false;
     }
+  
     public static boolean lic_10(){
         if(NUMPOINTS < 5)
             return false;
