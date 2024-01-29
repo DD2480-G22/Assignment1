@@ -151,8 +151,52 @@ class DecideTest {
     }
 
     @Test
-    void lic_8() {
-        fail("Not implemented");
+    void lic_8_true() {
+        Decide.parameters = new Parameters_T();
+        Point[] points = {
+                new Point(0, 0), // Point a
+                new Point(0, 0.5),
+                new Point(0, 1), // Point b
+                new Point(0.5,0),
+                new Point(1,1)  // Point c
+        };
+        Decide.points = points;
+
+        Decide.NUMPOINTS = points.length;
+        Decide.parameters.APTS = 1;
+        Decide.parameters.BPTS = 1;
+        Decide.parameters.RADIUS1 = 0.7;
+
+        assertTrue(Decide.lic_8());
+    }
+
+    @Test
+    void lic_8_false() {
+        Decide.parameters = new Parameters_T();
+        Point[] points = {
+                new Point(0.1, 0),
+                new Point(0, 0),
+                new Point(0, 0.1),
+                new Point(0, 1),
+                new Point(0,0.2),
+                new Point(0,2),
+                new Point(0,0.3)
+        };
+        Decide.points = points;
+
+        Decide.NUMPOINTS = points.length;
+        Decide.parameters.APTS = 1;
+        Decide.parameters.BPTS = 1;
+        Decide.parameters.RADIUS1 = 1;
+
+        assertFalse(Decide.lic_8());
+    }
+
+    @Test
+    void distance() {
+        Point a = new Point(2,4);
+        Point b = new Point(-1,4);
+        assertEquals(Decide.distance(a,b), 3);
     }
 
     @Test
@@ -215,7 +259,7 @@ class DecideTest {
         fail("Not implemented");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_12_true() {
         Decide.parameters = new Parameters_T();
         Point[] points = {
@@ -236,7 +280,7 @@ class DecideTest {
         assertTrue(Decide.lic_12());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void lic_12_false() {
         Decide.parameters = new Parameters_T();
         Point[] points = {
