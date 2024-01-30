@@ -292,6 +292,18 @@ public class Decide {
         return false;
     }
     public static boolean lic_11(){
+        if (NUMPOINTS < 3){
+            return false;
+        }
+
+        for (int i = 0; i < points.length - parameters.GPTS - 1; i++) {
+            Point point1 = points[i];                       // (X[i],Y[i])
+            Point point2 = points[i + 1 + parameters.GPTS]; // (X[j],Y[j])
+
+            if (point2.x - point1.x < 0){                   // X[j] - X[i] < 0 (where i < j)
+                return true;
+            }
+        }
         return false;
     }
     public static boolean lic_12(){
