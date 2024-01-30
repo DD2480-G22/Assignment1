@@ -101,8 +101,43 @@ class DecideTest {
     }
 
     @Test
-    void lic_3() {
-        fail("Not implemented");
+    void lic_3_true() {
+        Decide.parameters = new Parameters_T();
+        Point[] points = {
+                new Point(0, 0),
+                new Point(1, 0),
+                new Point(5, 5),
+                new Point(6, 8)
+        };
+        //Gives two triangles, one with area 2.5 and the other with area 3.5
+        Decide.parameters.AREA1 = 3.2;
+
+        Decide.points = points;
+        Decide.NUMPOINTS = 4;
+
+        boolean decision = Decide.lic_3();
+
+        assertTrue(decision);
+    }
+
+    @Test
+    void lic_3_false() {
+        Decide.parameters = new Parameters_T();
+        Point[] points = {
+                new Point(2, 1),
+                new Point(4, 4),
+                new Point(-2, 3)
+        };
+
+        //Gives a triangle with area 8
+        Decide.parameters.AREA1 = 9;
+
+        Decide.points = points;
+        Decide.NUMPOINTS = 3;
+
+        boolean decision = Decide.lic_3();
+
+        assertFalse(decision);
     }
 
     @Test
