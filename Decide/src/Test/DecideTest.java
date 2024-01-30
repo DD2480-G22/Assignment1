@@ -136,8 +136,33 @@ class DecideTest {
     }
 
     @Test
-    void lic_5() {
-        fail("Not implemented");
+    void lic_5_true() {
+        Point[] points = {
+                new Point(0, 0),
+                new Point(1, 0),
+                new Point(5, 5),
+                new Point(2,0)
+        };
+
+        Decide.points = points;
+        Decide.NUMPOINTS = points.length;
+
+        assertTrue(Decide.lic_5());
+    }
+
+    @Test
+    void lic_5_false() {
+        Point[] points = {
+                new Point(0, 0),
+                new Point(1, 0),
+                new Point(5, 5),
+                new Point(7,0)
+        };
+
+        Decide.points = points;
+        Decide.NUMPOINTS = points.length;
+
+        assertFalse(Decide.lic_5());
     }
 
     @Test

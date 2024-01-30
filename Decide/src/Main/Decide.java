@@ -166,6 +166,19 @@ public class Decide {
         }
     }
     public static boolean lic_5(){
+        for(int i = 0; i+1 < points.length; i++){
+
+            // 2 consecutive points
+            Point p1 = points[i];
+            Point p2 = points[i+1];
+
+            // difference in x-axis between second and first point
+            double diff = p2.x-p1.x;
+
+            if(diff < 0){
+                return true;
+            }
+        }
         return false;
     }
     public static boolean lic_6(){
