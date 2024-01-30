@@ -316,6 +316,35 @@ public class Decide {
         return dist1 & dist2;
     }
     public static boolean lic_13(){
+        boolean condition1 = lic_8();
+
+        if (NUMPOINTS < 5){
+            return false;
+        }
+
+        for (int i = 0; i < points.length - parameters.APTS - parameters.BPTS - 2; i++) {
+            Point point1 = points[i];
+            Point point2 = points[i + 1 + parameters.APTS];
+            Point point3 = points[i + 2 + parameters.APTS + parameters.BPTS];
+
+            // side lengths
+            double a = distance(point1, point2);
+            double b = distance(point2, point3);
+            double c = distance(point3, point1);
+
+            // if points are collinear
+            if ((point2.y - point1.y) / (point2.x - point1.x) == ((point3.y - point2.y) / (point3.x - point2.x))){
+                return a <= parameters.RADIUS2 * 2 && b <= parameters.RADIUS2 * 2 && c <= parameters.RADIUS2 * 2 && condition1;
+            }
+
+            double s = (a + b + c) / 2; // semiperimeter
+            double circumradius = (a * b * c) / (4.0 * Math.sqrt(s * (a+b-s) * (a+c-s) * (b+c-s)));
+
+            if (circumradius <= parameters.RADIUS2){
+                return condition1;
+            }
+
+        }
         return false;
     }
     public static boolean lic_14(){
