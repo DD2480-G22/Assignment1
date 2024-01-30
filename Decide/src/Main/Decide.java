@@ -112,8 +112,6 @@ public class Decide {
     }
     public static boolean lic_3(){
 
-        boolean area1check = false;
-
         for(int i = 0; i+2 < points.length; i++){
 
             // 3 vertices from points
