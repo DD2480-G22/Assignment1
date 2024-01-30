@@ -47,7 +47,7 @@ public class Decide {
 
     // Calculates the CMV with the use of LIC-requirements
     public static boolean[] setCMV(){
-        CMV = new boolean[14];
+        CMV = new boolean[15];
         CMV[0] = lic_0();
         CMV[1] = lic_1();
         CMV[2] = lic_2();
@@ -65,6 +65,32 @@ public class Decide {
         CMV[14] = lic_14();
 
         return CMV;
+    }
+
+    /*
+    - The PUM is set using the CMV and LCM
+    - By applying the boolean operator from the LCM to the requirements in CMV we get the PUM
+     */
+    public static boolean[][] setPUM(){
+
+        PUM = new boolean[15][15];
+        for(int i = 0; i <= 14; i++){
+            for(int j = 0; j <= 14; j++){
+                // Note that the diagonal is filled in too, which needs to be disregarded when calculating the FUV
+                switch(LCM[i][j]){
+                    case ANDD:
+                        PUM[i][j] = CMV[i] && CMV[j];
+                        break;
+                    case ORR:
+                        PUM[i][j] = CMV[i] || CMV[j];
+                        break;
+                    case NOTUSED:
+                        PUM[i][j] = true;
+                        break;
+                }
+            }
+        }
+        return PUM;
     }
 
     public static boolean lic_0(){

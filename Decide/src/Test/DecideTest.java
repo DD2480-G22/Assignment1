@@ -8,10 +8,71 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DecideTest {
 
+    public enum operators {
+        NOTUSED,
+        ANDD,
+        ORR
+    }
 
     @Test
     void decide() {
         fail("Not implemented");
+    }
+
+    // Tests the PUM based on the input data for LCM and CMV from the assignment
+    @Test
+    void setPUM() {
+        // Set up the LCM
+        Decide.operators[][] LCM = new Decide.operators[15][15];
+        LCM[0][0] = Decide.operators.ANDD;
+        LCM[0][1] = Decide.operators.ANDD;
+        LCM[0][2] = Decide.operators.ORR;
+        LCM[0][3] = Decide.operators.ANDD;
+
+        LCM[1][0] = Decide.operators.ANDD;
+        LCM[1][2] = Decide.operators.ORR;
+        LCM[1][3] = Decide.operators.ORR;
+        LCM[1][4] = Decide.operators.ANDD;
+
+        LCM[2][0] = Decide.operators.ORR;
+        LCM[2][2] = Decide.operators.ORR;
+        LCM[2][3] = Decide.operators.ANDD;
+        LCM[2][4] = Decide.operators.ANDD;
+
+        LCM[3][0] = Decide.operators.ANDD;
+        LCM[3][2] = Decide.operators.ORR;
+        LCM[3][3] = Decide.operators.ANDD;
+        LCM[3][4] = Decide.operators.ANDD;
+
+        for(int i = 0; i <= 14; i++){
+            for(int j = 0; j <= 14; j++){
+                if(LCM[i][j] == null){
+                    LCM[i][j] = Decide.operators.NOTUSED;
+                }
+            }
+        }
+        Decide.LCM = LCM;
+
+        // Set up CMV
+        boolean[] CMV = new boolean[15];
+        for(int i = 0; i <= 14; i++){
+            CMV[i] = false;
+        }
+        CMV[1] = true;
+        CMV[2] = true;
+        CMV[3] = true;
+        Decide.CMV = CMV;
+
+        boolean[][] PUM = Decide.setPUM();
+        // Sample
+        assertFalse(PUM[0][1]);
+        assertTrue(PUM[0][2]);
+        assertFalse(PUM[0][3]);
+        assertTrue(PUM[0][4]);
+
+        assertFalse(PUM[1][0]);
+        assertTrue(PUM[1][2]);
+        assertTrue(PUM[1][3]);
     }
 
     @Test
