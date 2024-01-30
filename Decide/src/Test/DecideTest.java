@@ -76,6 +76,39 @@ class DecideTest {
     }
 
     @Test
+    void setFUV() {
+        // Setup PUM
+        boolean[][] PUM = new boolean[15][15];
+        for(int i = 0; i <= 14; i++){
+            for(int j = 0; j <= 14; j++){
+                PUM[i][j] = true;
+            }
+        }
+        PUM[0][1] = false;
+        PUM[0][3] = false;
+        PUM[1][0] = false;
+        PUM[3][0] = false;
+
+        Decide.PUM = PUM;
+
+        // Set up PUV according to 2.3 in the assignment
+        boolean[] PUV = new boolean[15];
+        for(int i = 0; i <= 14; i++){
+            PUV[i] = true;
+        }
+        PUV[1] = false;
+        Decide.PUV =  PUV;
+
+        // Create the FUV
+        boolean[] FUV = Decide.setFUV();
+
+        // Ensure that the result matches table 4 in the assignment
+        assertFalse(FUV[0]);
+        assertTrue(FUV[1]);
+        assertTrue(FUV[2]);
+    }
+
+    @Test
     void lic_0() {
         Decide.parameters = new Parameters_T();
         Point p1 = new Point(1,1);

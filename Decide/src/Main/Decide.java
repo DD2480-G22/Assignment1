@@ -93,6 +93,29 @@ public class Decide {
         return PUM;
     }
 
+    public static boolean[] setFUV(){
+        boolean check;
+        FUV = new boolean[15];
+        for(int i = 0; i <= 14; i++){
+            check = true;
+            if(!PUV[i]){
+                FUV[i] = true;
+            }
+            else{
+                for(int j = 0; j <= 14; j++){
+                    // Note here that we skip the diagonal due to the task description
+                    if (i != j && !PUM[i][j]) {
+                        check = false;
+                        break;
+                    }
+                }
+                FUV[i] = check;
+            }
+        }
+
+        return FUV;
+    }
+
     public static boolean lic_0(){
         double max_distance = -1;
         double distance = -1;
