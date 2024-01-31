@@ -109,6 +109,27 @@ class DecideTest {
     }
 
     @Test
+    void launch_true(){
+        boolean[] FUV = new boolean[15];
+        for(int i = 0; i <= 14; i++){
+            FUV[i] = true;
+        }
+        Decide.FUV = FUV;
+        assertTrue(Decide.launch());
+    }
+
+    @Test
+    void launch_false(){
+        boolean[] FUV = new boolean[15];
+        for(int i = 0; i <= 14; i++){
+            FUV[i] = true;
+        }
+        FUV[2] = false;
+        Decide.FUV = FUV;
+        assertFalse(Decide.launch());
+    }
+
+    @Test
     void lic_0() {
         Decide.parameters = new Parameters_T();
         Point p1 = new Point(1,1);
