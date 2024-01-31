@@ -104,8 +104,18 @@ public class Decide {
         }
         return max_distance > parameters.LENGTH1;
     }
-    public static boolean lic_1(){
+    public static boolean lic_1()
+      if (xpoints.length <3)
         return false;
+      if (xpoints.length !=ypoints.length || radius1 <0)
+          return false;
+
+      for (int i=0; i< xpoints.length -2; i++){
+          boolean result = helperCircle (xpoints[i], ypoints[i], xpoints[i+1], ypoints[i+1], xpoints[i+2], ypoints[i+2], radius1);
+          if(result)
+              return false;
+      }
+      return true;
     }
     public static boolean lic_2(){
         return false;
