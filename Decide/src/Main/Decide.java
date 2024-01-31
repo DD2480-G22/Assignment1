@@ -117,7 +117,13 @@ public class Decide {
       }
       return true;
     }
-    public static boolean lic_2(){
+    public static boolean lic_2()
+        {
+    for (int i=0; i < xpoints -2; i++){
+        boolean result = angleBetweenPointsEpsilon(xpoints[i], ypoints[i], xpoints[i+1], y[i+1], xpoints[i+2], ypoints[i+2], epsilon);
+        if (result)
+            return true;
+}
         return false;
     }
     public static boolean lic_3(){
