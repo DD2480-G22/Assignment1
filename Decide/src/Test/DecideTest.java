@@ -91,8 +91,29 @@ class DecideTest {
     }
 
     @Test
-    void lic_1() {
-        fail("Not implemented");
+    void lic_1_true() {
+        Decide.parameters = new Parameters_T();
+        // Set up points which may be contained in the smallest circle with radius r = sqrt(2)/2
+        Decide.points = new Point[]{
+                new Point(0, 0),
+                new Point(1, 0),
+                new Point(0, 1)
+        };
+        Decide.parameters.RADIUS1 = 0.7;
+        assertTrue(Decide.lic_1());
+    }
+
+    @Test
+    void lic_1_false() {
+        Decide.parameters = new Parameters_T();
+        // Set up points which may be contained in the smallest circle with radius r = sqrt(2)
+        Decide.points = new Point[]{
+                new Point(0, 0),
+                new Point(2, 0),
+                new Point(0, 2)
+        };
+        Decide.parameters.RADIUS1 = 1.42;
+        assertFalse(Decide.lic_1());
     }
 
     @Test

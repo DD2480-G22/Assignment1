@@ -105,6 +105,28 @@ public class Decide {
         return max_distance > parameters.LENGTH1;
     }
     public static boolean lic_1(){
+        for (int i = 0; i+2 < points.length; i++) {
+            Point point1 = points[i];
+            Point point2 = points[i+1];
+            Point point3 = points[i+2];
+
+            // side lengths
+            double a = distance(point1, point2);
+            double b = distance(point2, point3);
+            double c = distance(point3, point1);
+
+            // if points are collinear
+            if ((point2.y - point1.y) / (point2.x - point1.x) == ((point3.y - point2.y) / (point3.x - point2.x))) {
+                return a > parameters.RADIUS1 * 2 || b > parameters.RADIUS1 * 2 || c > parameters.RADIUS1 * 2;
+            }
+
+            double s = (a + b + c) / 2; // semiperimeter
+            double circumradius = (a * b * c) / (4.0 * Math.sqrt(s * (a + b - s) * (a + c - s) * (b + c - s)));
+
+            if (circumradius > parameters.RADIUS1) {
+                return true;
+            }
+        }
         return false;
     }
     public static boolean lic_2(){
