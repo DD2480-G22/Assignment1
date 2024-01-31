@@ -15,8 +15,126 @@ class DecideTest {
     }
 
     @Test
-    void decide() {
-        fail("Not implemented");
+    void decide_true() {
+
+        // Set up initial points
+        Decide.points = new Point[]{
+                new Point(0, 0),
+                new Point(0, 2),
+                new Point(2, 3),
+                new Point(1, 0),
+                new Point(1, 1),
+                new Point(0, 1)
+        };
+
+        // Set up parameters
+        Decide.parameters = new Parameters_T();
+        Decide.NUMPOINTS = Decide.points.length;
+
+        Decide.parameters.EPSILON = 1.2;
+        Decide.parameters.APTS = 1;
+        Decide.parameters.BPTS = 1;
+        Decide.parameters.CPTS = 2;
+        Decide.parameters.DPTS = 1;
+        Decide.parameters.EPTS = 1;
+        Decide.parameters.FPTS = 1;
+        Decide.parameters.GPTS = 1;
+        Decide.parameters.AREA1 = 1;
+        Decide.parameters.AREA2 = 1;
+        Decide.parameters.RADIUS1 = 1;
+        Decide.parameters.RADIUS2 = 2;
+        Decide.parameters.QUADS = 2;
+        Decide.parameters.QPTS = 2;
+        Decide.parameters.LENGTH1 = 1;
+        Decide.parameters.LENGTH2 = 2;
+        Decide.parameters.KPTS = 1;
+        Decide.parameters.DIST = 1;
+        Decide.parameters.NPTS = 3;
+
+        // Set up LCM
+
+        Decide.operators[][] LCM = new Decide.operators[15][15];
+
+        for(int i = 0; i <= 14; i++){
+            for(int j = 0; j <= 14; j++){
+                LCM[i][j] = Decide.operators.NOTUSED;
+            }
+        }
+        LCM[0][1] = Decide.operators.ANDD; // LIC 0 and 1 must be true
+        Decide.LCM = LCM;
+
+        // Set up PUV
+        boolean[] PUV = new boolean[15];
+        for(int i = 0; i <= 14; i++){
+            PUV[i] = false;
+        }
+        PUV[1] = true;
+        PUV[5] = true;
+        Decide.PUV =  PUV;
+
+        assertTrue(Decide.decide());
+
+    }
+
+    @Test
+    void decide_false() {
+
+        // Set up initial points
+        Decide.points = new Point[]{
+                new Point(0, 0),
+                new Point(0, 2),
+                new Point(2, 3),
+                new Point(1, 0),
+                new Point(1, 1),
+                new Point(0, 1)
+        };
+
+        // Set up parameters
+        Decide.parameters = new Parameters_T();
+        Decide.NUMPOINTS = Decide.points.length;
+
+        Decide.parameters.EPSILON = 1.2;
+        Decide.parameters.APTS = 1;
+        Decide.parameters.BPTS = 1;
+        Decide.parameters.CPTS = 2;
+        Decide.parameters.DPTS = 1;
+        Decide.parameters.EPTS = 1;
+        Decide.parameters.FPTS = 3;
+        Decide.parameters.GPTS = 4;
+        Decide.parameters.AREA1 = 1;
+        Decide.parameters.AREA2 = 1;
+        Decide.parameters.RADIUS1 = 1;
+        Decide.parameters.RADIUS2 = 2;
+        Decide.parameters.QUADS = 2;
+        Decide.parameters.QPTS = 2;
+        Decide.parameters.LENGTH1 = 1;
+        Decide.parameters.LENGTH2 = 2;
+        Decide.parameters.KPTS = 1;
+        Decide.parameters.DIST = 1;
+        Decide.parameters.NPTS = 3;
+
+        // Set up LCM
+
+        Decide.operators[][] LCM = new Decide.operators[15][15];
+
+        for(int i = 0; i <= 14; i++){
+            for(int j = 0; j <= 14; j++){
+                LCM[i][j] = Decide.operators.NOTUSED;
+            }
+        }
+        LCM[0][1] = Decide.operators.ANDD; // LIC 0 and 1 must be true
+        LCM[2][3] = Decide.operators.ANDD;
+        Decide.LCM = LCM;
+
+        // Set up PUV
+        boolean[] PUV = new boolean[15];
+        for(int i = 0; i <= 14; i++){
+            PUV[i] = true;
+        }
+        Decide.PUV =  PUV;
+
+        assertFalse(Decide.decide());
+
     }
 
     @Test

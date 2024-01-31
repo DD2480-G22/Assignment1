@@ -43,7 +43,11 @@ public class Decide {
     public static boolean LAUNCH;
 
     public static boolean decide(){
-        return false;
+        CMV = setCMV();
+        PUM = setPUM();
+        FUV = setFUV();
+        LAUNCH = launch();
+        return LAUNCH;
     }
 
 
