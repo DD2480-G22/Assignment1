@@ -19,6 +19,61 @@ class DecideTest {
         fail("Not implemented");
     }
 
+    @Test
+    void setCMV() {
+        Decide.points = new Point[]{
+                new Point(0, 0),
+                new Point(0, 2),
+                new Point(2, 3),
+                new Point(1, 0),
+                new Point(1, 1),
+                new Point(0, 1)
+        };
+
+        Decide.parameters = new Parameters_T();
+        Decide.NUMPOINTS = Decide.points.length;
+
+        Decide.parameters.EPSILON = 1.2;
+        Decide.parameters.APTS = 1;
+        Decide.parameters.BPTS = 1;
+        Decide.parameters.CPTS = 2;
+        Decide.parameters.DPTS = 1;
+        Decide.parameters.EPTS = 1;
+        Decide.parameters.FPTS = 1;
+        Decide.parameters.GPTS = 1;
+        Decide.parameters.AREA1 = 1;
+        Decide.parameters.AREA2 = 1;
+        Decide.parameters.RADIUS1 = 1;
+        Decide.parameters.RADIUS2 = 2;
+        Decide.parameters.QUADS = 2;
+        Decide.parameters.QPTS = 2;
+        Decide.parameters.LENGTH1 = 1;
+        Decide.parameters.LENGTH2 = 2;
+        Decide.parameters.KPTS = 1;
+        Decide.parameters.DIST = 1;
+        Decide.parameters.NPTS = 3;
+
+        // Set CMV
+        Decide.setCMV();
+
+        // Check that every element in the CMV is correctly set
+        assertEquals(Decide.CMV[0], Decide.lic_0());
+        assertEquals(Decide.CMV[1], Decide.lic_1());
+        assertEquals(Decide.CMV[2], Decide.lic_2());
+        assertEquals(Decide.CMV[3], Decide.lic_3());
+        assertEquals(Decide.CMV[4], Decide.lic_4());
+        assertEquals(Decide.CMV[5], Decide.lic_5());
+        assertEquals(Decide.CMV[6], Decide.lic_6());
+        assertEquals(Decide.CMV[7], Decide.lic_7());
+        assertEquals(Decide.CMV[8], Decide.lic_8());
+        assertEquals(Decide.CMV[9], Decide.lic_9());
+        assertEquals(Decide.CMV[10], Decide.lic_10());
+        assertEquals(Decide.CMV[11], Decide.lic_11());
+        assertEquals(Decide.CMV[12], Decide.lic_12());
+        assertEquals(Decide.CMV[13], Decide.lic_13());
+        assertEquals(Decide.CMV[14], Decide.lic_14());
+    }
+
     // Tests the PUM based on the input data for LCM and CMV from the assignment
     @Test
     void setPUM() {
