@@ -246,6 +246,12 @@ class DecideTest {
     }
 
     @Test
+    void getQuadrant() {
+        Point p = new Point(-2,4); // Point in 2nd quadrant
+        assertEquals(Decide.getQuadrant(p), 2);
+    }
+
+    @Test
     void lic_5_true() {
         Point[] points = {
                 new Point(0, 0),
