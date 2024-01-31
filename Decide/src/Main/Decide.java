@@ -40,6 +40,8 @@ public class Decide {
     //Final Unlocking Vector.
     public static boolean[] FUV;
 
+    public static boolean LAUNCH;
+
     public static boolean decide(){
         return false;
     }
@@ -114,6 +116,17 @@ public class Decide {
         }
 
         return FUV;
+    }
+
+    public static boolean launch() {
+        LAUNCH = true;
+        for(int i = 0; i <= 14; i++){
+            if(!FUV[i]){
+                LAUNCH = false;
+                break;
+            }
+        }
+        return LAUNCH;
     }
 
     public static boolean lic_0(){
