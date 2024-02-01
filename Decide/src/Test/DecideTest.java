@@ -317,6 +317,7 @@ class DecideTest {
         assertTrue(decision);
     }
 
+    //  There exists at least one set of three consecutive data points that cannot all be contained within or on a circle of radius RADIUS1.
     @Test
     void lic_1_true() {
         Decide.parameters = new Parameters_T();
@@ -330,6 +331,7 @@ class DecideTest {
         assertTrue(Decide.lic_1());
     }
 
+    //  There DOES NOT exist at least one set of three consecutive data points that cannot all be contained within or on a circle of radius RADIUS1.
     @Test
     void lic_1_false() {
         Decide.parameters = new Parameters_T();
@@ -343,6 +345,10 @@ class DecideTest {
         assertFalse(Decide.lic_1());
     }
 
+    // There exists at least one set of three consecutive data points which form an angle such that:
+    //angle < (PI−EPSILON)
+    //or
+    //angle > (PI+EPSILON)
     @Test
     void lic_2_true() {
         Decide.parameters = new Parameters_T();
@@ -361,6 +367,10 @@ class DecideTest {
         assertTrue(Decide.lic_2());
     }
 
+    // There DOES NOT exist at least one set of three consecutive data points which form an angle such that:
+    //angle < (PI−EPSILON)
+    //or
+    //angle > (PI+EPSILON)
     @Test
     void lic_2_false() {
         Decide.parameters = new Parameters_T();
@@ -379,6 +389,7 @@ class DecideTest {
         assertFalse(Decide.lic_2());
     }
 
+    // There exists at least one set of three consecutive data points that are the vertices of a triangle with area greater than AREA1.
     @Test
     void lic_3_true() {
         Decide.parameters = new Parameters_T();
@@ -399,6 +410,7 @@ class DecideTest {
         assertTrue(decision);
     }
 
+    // There DOES NOT exist at least one set of three consecutive data points that are the vertices of a triangle with area greater than AREA1.
     @Test
     void lic_3_false() {
         Decide.parameters = new Parameters_T();
@@ -419,6 +431,7 @@ class DecideTest {
         assertFalse(decision);
     }
 
+    // There exists at least one set of Q PTS consecutive data points that lie in more than QUADS quadrants.
     @Test
     void lic_4_true() {
         Decide.parameters = new Parameters_T();
@@ -431,9 +444,10 @@ class DecideTest {
         };
         Decide.parameters.QPTS = 4;
         Decide.parameters.QUADS = 3;
-        assertTrue(Decide.lic_4()); // There exists at least one set of QPTS consecutive data points that lie in more than QUADS quadrants.
+        assertTrue(Decide.lic_4());
     }
 
+    // There DOES NOT exist at least one set of Q PTS consecutive data points that lie in more than QUADS quadrants.
     @Test
     void lic_4_false() {
         Decide.parameters = new Parameters_T();
@@ -449,12 +463,14 @@ class DecideTest {
         assertFalse(Decide.lic_4());
     }
 
+    // Point in quadrant 2 is in quadrant 2
     @Test
     void getQuadrant() {
         Point p = new Point(-2,4); // Point in 2nd quadrant
         assertEquals(Decide.getQuadrant(p), 2);
     }
 
+    // There exists at least one set of two consecutive data points, (X[i],Y[i]) and (X[j],Y[j]), such that X[j] - X[i] < 0. (where i = j-1)
     @Test
     void lic_5_true() {
         Point[] points = {
@@ -470,6 +486,7 @@ class DecideTest {
         assertTrue(Decide.lic_5());
     }
 
+    // There DOES NOT exist at least one set of two consecutive data points, (X[i],Y[i]) and (X[j],Y[j]), such that X[j] - X[i] < 0. (where i = j-1)
     @Test
     void lic_5_false() {
         Point[] points = {
@@ -485,6 +502,8 @@ class DecideTest {
         assertFalse(Decide.lic_5());
     }
 
+    // There exists at least one set of NPTS consecutive data points such that at least one of the
+    // points lies a distance greater than DIST from the line joining the first and last of these NPTS points.
     @Test
     void lic_6_true() {
         Decide.parameters = new Parameters_T();
@@ -501,6 +520,8 @@ class DecideTest {
         assertTrue(Decide.lic_6());
     }
 
+    // There DOES NOT exist at least one set of NPTS consecutive data points such that at least one of the
+    // points lies a distance greater than DIST from the line joining the first and last of these NPTS points.
     @Test
     void lic_6_false() {
         Decide.parameters = new Parameters_T();
@@ -516,6 +537,8 @@ class DecideTest {
         assertFalse(Decide.lic_6());
     }
 
+    // There exists at least one set of two data points separated by exactly KPTS consecutive intervening
+    // points that are a distance greater than the length, LENGTH1, apart.
     @Test
     void lic_7_true() {
         Decide.parameters = new Parameters_T();
@@ -536,6 +559,8 @@ class DecideTest {
         assertTrue(Decide.lic_7());
     }
 
+    // There DOES NOT exist at least one set of two data points separated by exactly KPTS consecutive intervening
+    // points that are a distance greater than the length, LENGTH1, apart.
     @Test
     void lic_7_false() {
         Decide.parameters = new Parameters_T();
@@ -556,6 +581,9 @@ class DecideTest {
         assertFalse(Decide.lic_7());
     }
 
+    // There exists at least one set of three data points separated by exactly APTS and BPTS
+    // consecutive intervening points, respectively, that cannot be contained within or on a circle of
+    // radius RADIUS1.
     @Test
     void lic_8_true() {
         Decide.parameters = new Parameters_T();
@@ -576,6 +604,9 @@ class DecideTest {
         assertTrue(Decide.lic_8());
     }
 
+    // There DOES NOT exist at least one set of three data points separated by exactly APTS and BPTS
+    // consecutive intervening points, respectively, that cannot be contained within or on a circle of
+    // radius RADIUS1.
     @Test
     void lic_8_false() {
         Decide.parameters = new Parameters_T();
@@ -598,6 +629,7 @@ class DecideTest {
         assertFalse(Decide.lic_8());
     }
 
+    // Check that distance between two points is correct
     @Test
     void distance() {
         Point a = new Point(2,4);
@@ -605,6 +637,11 @@ class DecideTest {
         assertEquals(Decide.distance(a,b), 3);
     }
 
+    // There exists at least one set of three data points separated by exactly C PTS and D PTS
+    //consecutive intervening points, respectively, that form an angle such that:
+    //angle < (PI−EPSILON)
+    //or
+    //angle > (PI+EPSILON)
     @Test
     void lic_9_true() {
         Decide.parameters = new Parameters_T();
@@ -625,6 +662,11 @@ class DecideTest {
         assertTrue(Decide.lic_9());
     }
 
+    // There DOES NOT exist at least one set of three data points separated by exactly C PTS and D PTS
+    //consecutive intervening points, respectively, that form an angle such that:
+    //angle < (PI−EPSILON)
+    //or
+    //angle > (PI+EPSILON)
     @Test
     void lic_9_false() {
         Decide.parameters = new Parameters_T();
@@ -645,6 +687,8 @@ class DecideTest {
         assertFalse(Decide.lic_9());
     }
 
+    // There exists at least one set of three data points separated by exactly E PTS and F PTS consecutive
+    // intervening points, respectively, that are the vertices of a triangle with area greater than AREA1
     @Test
     void lic_10_true() {
         Decide.parameters = new Parameters_T();
@@ -670,6 +714,8 @@ class DecideTest {
         assertTrue(decision);
     }
 
+    // There DOES NOT exist at least one set of three data points separated by exactly E PTS and F PTS consecutive
+    // intervening points, respectively, that are the vertices of a triangle with area greater than AREA1
     @Test
     void lic_10_false() {
         Decide.parameters = new Parameters_T();
@@ -695,6 +741,8 @@ class DecideTest {
         assertFalse(decision);
     }
 
+    // There exists at least one set of two data points, (X[i],Y[i]) and (X[j],Y[j]), separated by
+    //exactly G PTS consecutive intervening points, such that X[j] - X[i] < 0. (where i < j )
     @Test
     void lic_11_true() {
         Decide.parameters = new Parameters_T();
@@ -712,6 +760,8 @@ class DecideTest {
         assertTrue(Decide.lic_11());
     }
 
+    // There DOES NOT exist at least one set of two data points, (X[i],Y[i]) and (X[j],Y[j]), separated by
+    //exactly G PTS consecutive intervening points, such that X[j] - X[i] < 0. (where i < j )
     @Test
     void lic_11_false() {
         Decide.parameters = new Parameters_T();
@@ -729,6 +779,11 @@ class DecideTest {
         assertFalse(Decide.lic_11());
     }
 
+    // There exists at least one set of two data points, separated by exactly K PTS consecutive
+    // intervening points, which are a distance greater than the length, LENGTH1, apart. In addition,
+    // there exists at least one set of two data points (which can be the same or different from
+    // the two data points just mentioned), separated by exactly K PTS consecutive intervening
+    // points, that are a distance less than the length, LENGTH2, apart.
     @Test
     void lic_12_true() {
         Decide.parameters = new Parameters_T();
@@ -750,6 +805,11 @@ class DecideTest {
         assertTrue(Decide.lic_12());
     }
 
+    // There DOES NOT exist at least one set of two data points, separated by exactly KPTS consecutive
+    // intervening points, which are a distance greater than the length, LENGTH1, apart.
+    // There exists at least one set of two data points (which can be the same or different from
+    // the two data points just mentioned), separated by exactly KPTS consecutive intervening
+    // points, that are a distance less than the length, LENGTH2, apart.
     @Test
     void lic_12_false() {
         Decide.parameters = new Parameters_T();
@@ -771,6 +831,12 @@ class DecideTest {
         assertFalse(Decide.lic_12());
     }
 
+    // There exists at least one set of three data points, separated by exactly A PTS and B PTS
+    //consecutive intervening points, respectively, that cannot be contained within or on a circle of
+    //radius RADIUS1. In addition, there exists at least one set of three data points (which can be
+    //the same or different from the three data points just mentioned) separated by exactly A PTS
+    //and B PTS consecutive intervening points, respectively, that can be contained in or on a
+    //circle of radius RADIUS2.
     @Test
     void lic_13_true() {
         Decide.parameters = new Parameters_T();
@@ -792,6 +858,12 @@ class DecideTest {
         assertTrue(Decide.lic_13());
     }
 
+    // There exists at least one set of three data points, separated by exactly APTS and BPTS
+    //consecutive intervening points, respectively, that cannot be contained within or on a circle of
+    //radius RADIUS1. There DOES NOT exist at least one set of three data points (which can be
+    //the same or different from the three data points just mentioned) separated by exactly APTS
+    //and BPTS consecutive intervening points, respectively, that can be contained in or on a
+    //circle of radius RADIUS2.
     @Test
     void lic_13_false() {
         Decide.parameters = new Parameters_T();
@@ -813,6 +885,11 @@ class DecideTest {
         assertFalse(Decide.lic_13());
     }
 
+    // There exists at least one set of three data points, separated by exactly E PTS and F PTS
+    // consecutive intervening points, respectively, that are the vertices of a triangle with area greater
+    //than AREA1. In addition, there exist three data points (which can be the same or different
+    //from the three data points just mentioned) separated by exactly E PTS and F PTS consecutive
+    // intervening points, respectively, that are the vertices of a triangle with area less than AREA2.
     @Test
     void lic_14_true() {
         //Assert true
@@ -839,7 +916,12 @@ class DecideTest {
 
         assertTrue(decision);
     }
-  
+
+    // There DOES NOT exist at least one set of three data points, separated by exactly E PTS and F PTS
+    // consecutive intervening points, respectively, that are the vertices of a triangle with area greater
+    //than AREA1. In addition, there exist three data points (which can be the same or different
+    //from the three data points just mentioned) separated by exactly E PTS and F PTS consecutive
+    // intervening points, respectively, that are the vertices of a triangle with area less than AREA2.
     @Test
     void lic_14_false() {
         Decide.parameters = new Parameters_T();
