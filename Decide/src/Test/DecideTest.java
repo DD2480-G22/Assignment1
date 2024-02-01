@@ -344,8 +344,28 @@ class DecideTest {
     }
 
     @Test
-    void lic_2() {
-        fail("Not implemented");
+    void lic_2validData_pointAnglePI(){
+         double[] xpoints = new double[]{0, 1, 2};
+         double[] ypoints = new double[]{0, 0, 0};
+         double epsilon =1;
+         boolean result = LaunchInterceptorConditions.condition2(xpoints, ypoints, epsilon);
+         assertFalse(result);
+}
+    @Test
+    void lic_2InvalidDAta_onePoint(){
+        double[] xpoints = new double[]{3};
+        double[] ypoints = new double[]{3};
+        double epsilon =3;
+        boolean result = LaunchInterceptorConditios.Condition2(xpoints, ypoints, epsilon);
+         assertFalse(result);
+    }
+    @Test
+    void lic_2ValidData_pointAngleHalfPI(){
+        double[] xpoints = new double[]{0. 0, -1};
+        double[] ypoints = new double[]{0. 1, 0};
+        double epsilon = Math.PI / 3;
+         boolean result = LaunchInterceptorConditios.Condition2(xpoints, ypoints, epsilon);
+        assertTrue(result);
     }
 
     @Test
