@@ -119,7 +119,7 @@ class DecideTest {
 
         for(int i = 0; i <= 14; i++){
             for(int j = 0; j <= 14; j++){
-                LCM[i][j] = Decide.operators.NOTUSED;
+                LCM[i][j] = Decide.operators.ANDD;
             }
         }
         LCM[0][1] = Decide.operators.ANDD; // LIC 0 and 1 must be true
@@ -344,8 +344,39 @@ class DecideTest {
     }
 
     @Test
-    void lic_2() {
-        fail("Not implemented");
+    void lic_2_true() {
+        Decide.parameters = new Parameters_T();
+        Point[] points = {
+                new Point(1, 1),
+                new Point(5, 5),
+                new Point(0, 2)
+        };
+        Decide.points = points;
+        Decide.NUMPOINTS = points.length;
+
+        Decide.parameters.CPTS = 1;
+        Decide.parameters.DPTS = 1;
+        Decide.parameters.EPSILON = 2.8;
+
+        assertTrue(Decide.lic_2());
+    }
+
+    @Test
+    void lic_2_false() {
+        Decide.parameters = new Parameters_T();
+        Point[] points = {
+                new Point(1, 1),
+                new Point(5, 5),
+                new Point(0, 2)
+        };
+        Decide.points = points;
+        Decide.NUMPOINTS = points.length;
+
+        Decide.parameters.CPTS = 1;
+        Decide.parameters.DPTS = 1;
+        Decide.parameters.EPSILON = 3.2;
+
+        assertFalse(Decide.lic_2());
     }
 
     @Test

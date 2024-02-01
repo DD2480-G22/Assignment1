@@ -170,6 +170,27 @@ public class Decide {
         return false;
     }
     public static boolean lic_2(){
+        for (int i = 0; i + 2 < points.length; i++) {
+            Point point1 = points[i];
+            Point point2 = points[i+1]; // vertex of the angle
+            Point point3 = points[i+2];
+
+            double a = distance(point1, point2);
+            double b = distance(point2, point3);
+            double c = distance(point3, point1);
+
+            // If either the first point or the last point (or both) coincide with the vertex,
+            // the angle is undefined and the LIC is not satisfied by those three points.
+            if(a == 0 || b == 0){
+                return false;
+            }
+
+            // Calculate angle at point2
+            double angle = Math.acos((a*a + b*b - c*c) / (2*a*b));
+            if (angle < (PI-parameters.EPSILON) || angle > PI+parameters.EPSILON){
+                return true;
+            }
+        }
         return false;
     }
     public static boolean lic_3(){
