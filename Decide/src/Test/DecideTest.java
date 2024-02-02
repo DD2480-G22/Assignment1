@@ -302,8 +302,10 @@ class DecideTest {
         assertFalse(Decide.launch());
     }
 
+    // There exists at least one set of two consecutive data points that are a distance greater than
+    // the length, LENGTH1, apart.
     @Test
-    void lic_0() {
+    void lic_0_true() {
         Decide.parameters = new Parameters_T();
         Point p1 = new Point(1,1);
         Point p2 = new Point(3,3);
@@ -315,6 +317,23 @@ class DecideTest {
         boolean decision = Decide.lic_0();
 
         assertTrue(decision);
+    }
+
+    // There DOES NOT exist at least one set of two consecutive data points that are a distance greater than
+    // the length, LENGTH1, apart.
+    @Test
+    void lic_0_false() {
+        Decide.parameters = new Parameters_T();
+        Point p1 = new Point(0,0);
+        Point p2 = new Point(0,1);
+        Point[] list = {p1,p2};
+        Decide.parameters.LENGTH1 = 2;
+        Decide.points = list;
+        Decide.NUMPOINTS = 2;
+
+        boolean decision = Decide.lic_0();
+
+        assertFalse(decision);
     }
 
     //  There exists at least one set of three consecutive data points that cannot all be contained within or on a circle of radius RADIUS1.
